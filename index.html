@@ -5,53 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joseph Muthike - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f4f4f4;
-            color: #333;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            line-height: 1.6;
         }
+
         header {
-            background: #333;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 20px;
+            padding: 60px 20px;
             text-align: center;
+            animation: fadeInDown 1s ease;
         }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            animation: fadeIn 1.5s ease;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+            animation: fadeIn 2s ease;
+        }
+
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 20px 0 0;
+            animation: fadeIn 2.5s ease;
         }
+
         nav ul li {
             display: inline;
             margin: 0 15px;
         }
+
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
+
+        nav ul li a:hover {
+            color: #ff6f61;
+        }
+
         section {
-            padding: 50px;
+            padding: 60px 20px;
             text-align: center;
+            animation: fadeInUp 1s ease;
         }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff6f61;
+        }
+
+        section p, section ul {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        section ul li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 600px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        section ul li:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .project {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             margin: 20px auto;
             max-width: 600px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin: 0 0 10px;
+            color: #ff6f61;
+        }
+
         footer {
-            background: #333;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             text-align: center;
-            padding: 10px;
-            position: fixed;
+            padding: 20px;
+            position: relative;
             bottom: 0;
             width: 100%;
+            animation: fadeInUp 1s ease;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        a {
+            color: #ff6f61;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ff3b2f;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
