@@ -6,9 +6,8 @@
     <title>Joseph Kamau Muthike - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
-
-    <styles.css>
-        body {
+<style>
+    body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -39,9 +38,22 @@ ul {
     gap: 20px;
 }
 
-.hero-content h1 {
-    font-size: 50px;
-    animation: fadeIn 2s ease-in;
+.hero-content {
+    padding: 50px 20px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.project-img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -61,7 +73,8 @@ ul {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-    </styles.css>
+</style>
+    
 </head>
 <body>
     <header>
@@ -77,6 +90,7 @@ ul {
     </header>
     <section id="hero">
         <div class="hero-content">
+            <img src="profile.jpg" alt="Joseph Kamau" class="profile-pic">
             <h1>Hi, I'm Joseph Kamau</h1>
             <p>Passionate about technology, web development, and system design.</p>
             <a href="#projects" class="btn">View My Work</a>
@@ -98,10 +112,12 @@ ul {
     <section id="projects">
         <h2>Projects</h2>
         <div class="project">
+            <img src="khims.jpg" alt="KHIMS Project" class="project-img">
             <h3>KHIMS</h3>
             <p>Designed a hospital management system for efficient record-keeping.</p>
         </div>
         <div class="project">
+            <img src="bank-simulation.jpg" alt="Bank Account Simulation" class="project-img">
             <h3>Bank Account Simulation</h3>
             <p>Developed a distributed banking system using Java RMI.</p>
         </div>
@@ -110,11 +126,16 @@ ul {
         <h2>Contact</h2>
         <p>Email: <a href="mailto:joemuthike02@gmail.com">joemuthike02@gmail.com</a></p>
         <p>Phone: 0711391662</p>
-        <p><a href="https://www.linkedin.com/in/joseph-kamau-a901ba344">LinkedIn</a> | <a href="https://josekamaa.github.io/portfolio/">GitHub</a></p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/joseph-kamau-a901ba344" target="_blank"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+            <a href="https://josekamaa.github.io/portfolio/" target="_blank"><img src="github-icon.png" alt="GitHub"></a>
+        </div>
     </section>
     <footer>
         <p>&copy; 2025 Joseph Kamau. All rights reserved.</p>
     </footer>
 </body>
 </html>
+
+
 
