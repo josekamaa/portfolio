@@ -13,6 +13,7 @@
             color: white;
             text-align: center;
             padding: 20px;
+            margin: 0;
         }
         h1 {
             font-size: 2.5em;
@@ -20,6 +21,7 @@
         }
         p {
             font-size: 1.2em;
+            margin-bottom: 20px;
         }
         .chat-container {
             max-width: 500px;
@@ -36,22 +38,45 @@
             background: #2c3e50;
             border-radius: 5px;
             text-align: left;
+            margin-bottom: 10px;
         }
         .message {
             padding: 10px;
             margin: 5px 0;
             border-radius: 5px;
+            max-width: 80%;
         }
         .user {
             background: #3498db;
             text-align: right;
+            margin-left: auto;
         }
         .bot {
             background: #2ecc71;
             text-align: left;
+            margin-right: auto;
+        }
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .suggestions button {
+            padding: 8px 12px;
+            background: #34495e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .suggestions button:hover {
+            background: #2c3e50;
         }
         input {
-            width: 80%;
+            width: calc(100% - 90px);
             padding: 10px;
             border-radius: 5px;
             border: none;
@@ -64,6 +89,7 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            transition: background 0.3s ease;
         }
         button:hover {
             background: #c0392b;
@@ -75,8 +101,20 @@
     <p>Ask me about Joseph's education, skills, projects, experience, or how to contact him! 😊</p>
     
     <div class="chat-container">
-        <div id="chatbox"></div>
-        <input type="text" id="userInput" placeholder="Type a question..." />
+        <div id="chatbox">
+            <div class="message bot">Hi! I'm Joseph Kamau's chatbot. How can I help you today? 😊</div>
+            <div class="message bot">Here are some questions you can ask:</div>
+            <div class="message bot">1. What is Joseph's education?<br>2. What are Joseph's skills?<br>3. What projects has Joseph worked on?<br>4. How can I contact Joseph?</div>
+        </div>
+        
+        <div class="suggestions">
+            <button onclick="askQuestion('What is Joseph\'s education?')">Education</button>
+            <button onclick="askQuestion('What are Joseph\'s skills?')">Skills</button>
+            <button onclick="askQuestion('What projects has Joseph worked on?')">Projects</button>
+            <button onclick="askQuestion('How can I contact Joseph?')">Contact</button>
+        </div>
+        
+        <input type="text" id="userInput" placeholder="Type a question..." onkeypress="handleKeyPress(event)" />
         <button onclick="sendMessage()">Send</button>
     </div>
     
@@ -97,6 +135,17 @@
             }, 500);
         }
         
+        function askQuestion(question) {
+            userInput.value = question;
+            sendMessage();
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+        
         function addMessage(message, sender) {
             const msgDiv = document.createElement("div");
             msgDiv.classList.add("message", sender);
@@ -108,12 +157,12 @@
         function getResponse(question) {
             const responses = {
                 "who are you?": "I'm Joseph Kamau's chatbot, here to answer questions about him! 😊",
-                "what is your education?": "Joseph is pursuing a Bachelor of Science in Information Science at Kisii University, expected to graduate in 2025.",
-                "what are your skills?": "Joseph is skilled in Java, PHP, JavaScript, HTML, CSS, MySQL, web development, database management, networking, and distributed systems.",
-                "what projects have you worked on?": "Joseph has developed the KHIMS hospital management system and a Java RMI bank account simulation.",
-                "what work experience do you have?": "Joseph completed an attachment at Kimbimbi Sub-County Level 4 Hospital, working with NHIF, KHIS, and JICA systems. He also works as a freelance web developer.",
-                "what certifications do you have?": "Joseph has training in Web Development & Database Management and Health Information Systems.",
-                "how can i contact you?": "You can reach Joseph via email at joemuthike02@gmail.com or phone at 0711391662."
+                "what is joseph's education?": "Joseph is pursuing a Bachelor of Science in Information Science at Kisii University, expected to graduate in 2025.",
+                "what are joseph's skills?": "Joseph is skilled in Java, PHP, JavaScript, HTML, CSS, MySQL, web development, database management, networking, and distributed systems.",
+                "what projects has joseph worked on?": "Joseph has developed the KHIMS hospital management system, a Java RMI bank account simulation, and a boutique management system for Daylight Collections.",
+                "what work experience does joseph have?": "Joseph completed an attachment at Kimbimbi Sub-County Level 4 Hospital, working with NHIF, KHIS, and JICA systems. He also works as a freelance web developer.",
+                "how can i contact joseph?": "You can reach Joseph via email at joemuthike02@gmail.com or phone at 0711391662.",
+                "what certifications does joseph have?": "Joseph has training in Web Development & Database Management and Health Information Systems."
             };
             
             return responses[question] || "I'm not sure how to answer that. Try asking about education, skills, projects, experience, or contact info! 😊";
