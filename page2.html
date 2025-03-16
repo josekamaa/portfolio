@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daylight Collections - Joseph Kamau</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #0a192f;
+            color: #ccd6f6;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(10, 25, 47, 0.9);
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #64ffda;
+            animation: fadeIn 1s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #ccd6f6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #64ffda;
+        }
+
+        section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #64ffda;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .project-img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: #64ffda;
+            color: #0a192f;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn:hover {
+            background: #112240;
+            color: #64ffda;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: rgba(10, 25, 47, 0.9);
+            padding: 20px;
+            text-align: center;
+            color: #ccd6f6;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Joseph Kamau</div>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="project-details">
+        <h1>Daylight Collections Boutique Management System</h1>
+        <img src="daylight-collections.jpg" alt="Daylight Collections" class="project-img">
+        <p>
+            The Daylight Collections Boutique Management System is a comprehensive solution designed to help boutique owners manage their inventory, sales, and customer data efficiently. The system includes features such as:
+        </p>
+        <ul>
+            <li>Inventory Management: Track stock levels and product details.</li>
+            <li>Sales Tracking: Record and analyze sales data.</li>
+            <li>Customer Management: Store and manage customer information.</li>
+            <li>Reporting: Generate reports for sales, inventory, and customer insights.</li>
+        </ul>
+        <p>
+            This project was developed using <strong>PHP</strong> for the backend, <strong>MySQL</strong> for the database, and <strong>HTML/CSS/JavaScript</strong> for the frontend. It was a great opportunity to work closely with a client to deliver a tailored solution that meets their specific needs.
+        </p>
+        <a href="index.html#projects" class="btn">Back to Projects</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Joseph Kamau. All rights reserved.</p>
+    </footer>
+</body>
+</html>

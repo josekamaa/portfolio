@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Kamau Muthike - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Joseph Kamau</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#chatbot">Chatbot</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="hero">
+        <div class="hero-content">
+            <img src="profile.jpg" alt="Joseph Kamau" class="profile-pic">
+            <h1>Hi, I'm Joseph Kamau</h1>
+            <p>Passionate about technology, web development, and system design.</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Information Science student skilled in database management, web development, and distributed systems.</p>
+    </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>JavaScript, PHP, Java, HTML, CSS, MySQL</li>
+            <li>Web Development (Frontend & Backend)</li>
+            <li>Health Information Systems</li>
+            <li>Networking & Distributed Systems</li>
+        </ul>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <img src="khims.jpg" alt="KHIMS Project" class="project-img">
+            <h3>KHIMS</h3>
+            <p>Designed a hospital management system for efficient record-keeping.</p>
+        </div>
+        <div class="project">
+            <img src="bank-simulation.jpg" alt="Bank Account Simulation" class="project-img">
+            <h3>Bank Account Simulation</h3>
+            <p>Developed a distributed banking system using Java RMI.</p>
+        </div>
+    </section>
+    <section id="chatbot">
+        <h2>Ask My Chatbot</h2>
+        <p>Ask me about my education, skills, projects, work experience, certifications, and more!</p>
+        <div class="chat-container">
+            <div id="chatbox"></div>
+            <input type="text" id="userInput" placeholder="Type a question..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:joemuthike02@gmail.com">joemuthike02@gmail.com</a></p>
+        <p>Phone: 0711391662</p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/joseph-kamau-a901ba344" target="_blank"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+            <a href="https://josekamaa.github.io/portfolio/" target="_blank"><img src="github-icon.png" alt="GitHub"></a>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Joseph Kamau. All rights reserved.</p>
+    </footer>
+    <script>
+        const chatbox = document.getElementById("chatbox");
+        const userInput = document.getElementById("userInput");
+        
+        function sendMessage() {
+            const question = userInput.value.trim().toLowerCase();
+            if (question === "") return;
+            
+            addMessage("You: " + userInput.value, "user");
+            userInput.value = "";
+            
+            setTimeout(() => {
+                let response = getResponse(question);
+                addMessage("Chatbot: " + response, "bot");
+            }, 500);
+        }
+        
+        function addMessage(message, sender) {
+            const msgDiv = document.createElement("div");
+            msgDiv.classList.add("message", sender);
+            msgDiv.textContent = message;
+            chatbox.appendChild(msgDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+        
+        function getResponse(question) {
+            const responses = {
+                "who are you?": "I'm Joseph Kamau's personal chatbot, here to guide you through his portfolio! 😊",
+                "what is your education?": "Joseph is pursuing a Bachelor of Science in Information Science at Kisii University, expected to graduate in 2025.",
+                "what are your skills?": "Joseph is skilled in Java, PHP, JavaScript, HTML, CSS, MySQL, web development, database management, networking, and distributed systems.",
+                "what projects have you worked on?": "Joseph has developed the KHIMS hospital management system and a Java RMI bank account simulation.",
+                "what work experience do you have?": "Joseph completed an attachment at Kimbimbi Sub-County Level 4 Hospital, working with NHIF, KHIS, and JICA systems. He also works as a freelance web developer.",
+                "what certifications do you have?": "Joseph has training in Web Development & Database Management and Health Information Systems.",
+                "how can i contact you?": "You can reach Joseph via email at joemuthike02@gmail.com or phone at 0711391662."
+            };
+            
+            return responses[question] || "I'm not sure how to answer that. Try asking about education, skills, projects, experience, or contact info! 😊";
+        }
+    </script>
+</body>
+</html>
