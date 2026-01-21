@@ -3,45 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View & Download CV</title>
+    <title>Joseph Kamau - Resume</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f4;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            flex-direction: column;
         }
 
         .container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 800px;
-            width: 90%;
+            width: 100%;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        h2 {
-            color: #333;
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -30%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
             margin-bottom: 10px;
         }
 
-        .iframe-container {
-            width: 100%;
-            height: 600px; /* Slightly taller for better reading */
-            border-radius: 8px;
-            overflow: hidden;
+        .icon {
+            margin-right: 8px;
+        }
+
+        .content {
+            padding: 35px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark);
             margin-bottom: 20px;
-            border: 1px solid #ddd;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .viewer-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--gray-light);
+            margin-bottom: 30px;
+            height: 700px;
+            position: relative;
+            background-color: #f9fafb;
+        }
+
+        .viewer-container.loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        .viewer-container.loading::before {
+            content: 'Loading Resume...';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            font-size: 1.2rem;
+            color: var(--gray);
         }
 
         iframe {
@@ -50,41 +171,234 @@
             border: none;
         }
 
-        .download-btn {
-            display: inline-block;
-            text-decoration: none;
-            background: #24292e; /* GitHub Black */
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        .download-btn:hover {
-            background: #444;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0f7ff;
+            transform: translateY(-3px);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--gray-light);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--gray-light);
+            margin-top: 20px;
+        }
+
+        .error-message {
+            display: none;
+            background-color: #fee;
+            color: #c33;
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 20px;
+            border-left: 4px solid #c33;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                width: calc(100% - 20px);
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .viewer-container {
+                height: 500px;
+            }
+            
+            .btn {
+                min-width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>My Resume</h2>
-
-        <div class="iframe-container">
-            <iframe src="https://raw.githubusercontent.com/josekamaa/portfolio/main/joseph kamau- fullsatckdeveloper.pdf"></iframe>
+        <div class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-user icon"></i> Joseph Kamau</h1>
+                <p class="subtitle">Full Stack Developer</p>
+                <p><i class="fas fa-map-marker-alt icon"></i> Available for opportunities worldwide</p>
+            </div>
         </div>
-
-        <a href="https://raw.githubusercontent.com/josekamaa/portfolio/main/joseph kamau- fullsatckdeveloper.pdf" class="download-btn" download>
-            Download PDF
-        </a>
+        
+        <div class="content">
+            <div class="section-title">
+                <i class="fas fa-file-alt"></i> Professional Resume
+            </div>
+            
+            <div id="error-message" class="error-message">
+                <i class="fas fa-exclamation-triangle"></i> 
+                <p>Unable to load the PDF preview. Please use the download button below to view the resume.</p>
+            </div>
+            
+            <div class="viewer-container loading" id="pdf-viewer">
+                <!-- PDF will be displayed here -->
+                <iframe id="pdf-frame" 
+                        src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/josekamaa/portfolio/main/joseph%20kamau-%20fullsatckdeveloper.pdf&embedded=true"
+                        onload="document.getElementById('pdf-viewer').classList.remove('loading')">
+                </iframe>
+                <div class="loading-spinner" id="spinner"></div>
+            </div>
+            
+            <div class="section-title">
+                <i class="fas fa-download"></i> Download Options
+            </div>
+            
+            <div class="btn-container">
+                <a href="https://raw.githubusercontent.com/josekamaa/portfolio/main/joseph%20kamau-%20fullsatckdeveloper.pdf" 
+                   class="btn btn-primary" 
+                   download="Joseph_Kamau_Resume_FullStackDeveloper.pdf">
+                    <i class="fas fa-file-pdf"></i> Download PDF Resume
+                </a>
+                
+                <button id="print-btn" class="btn btn-secondary">
+                    <i class="fas fa-print"></i> Print Resume
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© <span id="current-year"></span> Joseph Kamau | Full Stack Developer</p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">
+                <i class="fas fa-sync-alt"></i> Resume last updated: March 2024
+            </p>
+        </div>
     </div>
 
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Handle PDF loading errors
+        document.getElementById('pdf-frame').onerror = function() {
+            document.getElementById('pdf-viewer').classList.remove('loading');
+            document.getElementById('error-message').style.display = 'block';
+        };
+        
+        // Print functionality
+        document.getElementById('print-btn').addEventListener('click', function() {
+            const pdfUrl = 'https://raw.githubusercontent.com/josekamaa/portfolio/main/joseph%20kamau-%20fullsatckdeveloper.pdf';
+            const printWindow = window.open(pdfUrl, '_blank');
+            
+            // Try to trigger print after a short delay
+            setTimeout(function() {
+                if (printWindow) {
+                    printWindow.focus();
+                    printWindow.print();
+                } else {
+                    // Fallback: alert user
+                    alert('Please use the print option in the PDF viewer that opened.');
+                }
+            }, 1000);
+        });
+        
+        // Handle iframe load event
+        document.getElementById('pdf-frame').addEventListener('load', function() {
+            document.getElementById('pdf-viewer').classList.remove('loading');
+        });
+        
+        // Handle iframe error event
+        document.getElementById('pdf-frame').addEventListener('error', function() {
+            document.getElementById('pdf-viewer').classList.remove('loading');
+            document.getElementById('error-message').style.display = 'block';
+        });
+        
+        // Add a fallback viewer if Google Docs viewer fails
+        function fallbackViewer() {
+            const iframe = document.getElementById('pdf-frame');
+            const pdfUrl = 'https://raw.githubusercontent.com/josekamaa/portfolio/main/joseph%20kamau-%20fullsatckdeveloper.pdf';
+            
+            // Try using Microsoft Office Online viewer as fallback
+            iframe.src = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(pdfUrl)}`;
+        }
+        
+        // Check if PDF loaded successfully after 5 seconds
+        setTimeout(function() {
+            const iframe = document.getElementById('pdf-frame');
+            try {
+                // If iframe still shows loading, try fallback
+                if (document.getElementById('pdf-viewer').classList.contains('loading')) {
+                    fallbackViewer();
+                }
+            } catch(e) {
+                console.log("Error checking PDF load status:", e);
+            }
+        }, 5000);
+    </script>
 </body>
 </html>
-
-
-
-
