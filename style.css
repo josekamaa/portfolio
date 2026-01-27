@@ -43,6 +43,11 @@
   --transition-fast: 150ms ease;
   --transition-normal: 300ms ease;
   --transition-slow: 500ms ease;
+  
+  /* Header Height */
+  --header-height: 70px;
+  --header-height-scrolled: 60px;
+  --header-height-mobile: 60px;
 }
 
 /* Reset & Base Styles */
@@ -63,6 +68,7 @@ body {
   color: var(--text);
   background-color: var(--background);
   overflow-x: hidden;
+  padding-top: var(--header-height); /* FIXED: Add padding for fixed header */
 }
 
 /* ===== Typography ===== */
@@ -126,6 +132,7 @@ p {
 
 section {
   padding: var(--space-xxl) 0;
+  scroll-margin-top: calc(var(--header-height) + 20px); /* FIXED: Prevent anchor links from hiding under header */
 }
 
 /* Alternate section backgrounds */
@@ -139,15 +146,16 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  height: var(--header-height);
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-normal);
 }
 
 header.scrolled {
-  padding: 0.5rem 0;
+  height: var(--header-height-scrolled);
   box-shadow: var(--shadow-md);
 }
 
@@ -155,7 +163,8 @@ nav.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-md) var(--space-lg);
+  height: 100%;
+  padding: 0 var(--space-lg);
 }
 
 .logo {
@@ -168,6 +177,11 @@ nav.container {
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-md);
   border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
 }
 
 .nav-links {
@@ -204,7 +218,7 @@ nav.container {
   width: 100%;
 }
 
-/* Mobile Menu Toggle (hidden on desktop) */
+/* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   background: none;
@@ -212,6 +226,16 @@ nav.container {
   font-size: 1.5rem;
   color: var(--text);
   cursor: pointer;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.menu-toggle:hover {
+  background-color: var(--surface-dark);
 }
 
 /* ===== Hero Section ===== */
@@ -219,9 +243,9 @@ nav.container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 100vh;
-  padding-top: 80px;
+  min-height: calc(100vh - var(--header-height)); /* FIXED: Account for header height */
   gap: var(--space-xl);
+  padding-top: 0; /* FIXED: Remove extra padding since body has padding */
 }
 
 .hero-text {
@@ -489,6 +513,7 @@ footer {
   background-color: var(--surface-dark);
   color: var(--text-light);
   font-size: 0.9rem;
+  margin-top: var(--space-xl);
 }
 
 /* ===== Animations ===== */
@@ -546,9 +571,21 @@ footer {
     font-size: 1.75rem;
   }
   
+  body {
+    padding-top: var(--header-height-mobile); /* FIXED: Use mobile header height */
+  }
+  
+  header {
+    height: var(--header-height-mobile);
+  }
+  
+  section {
+    scroll-margin-top: calc(var(--header-height-mobile) + 10px); /* FIXED: Adjust for mobile */
+  }
+  
   .nav-links {
     position: fixed;
-    top: 70px;
+    top: var(--header-height-mobile);
     left: 0;
     width: 100%;
     background-color: white;
@@ -561,6 +598,9 @@ footer {
     visibility: hidden;
     transition: all var(--transition-normal);
     z-index: 999;
+    height: auto;
+    max-height: calc(100vh - var(--header-height-mobile));
+    overflow-y: auto;
   }
   
   .nav-links.active {
@@ -569,12 +609,36 @@ footer {
     visibility: visible;
   }
   
-  .menu-toggle {
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-links a {
     display: block;
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .nav-links a:after {
+    display: none;
+  }
+  
+  .nav-links a:hover {
+    background-color: var(--surface-dark);
+  }
+  
+  .menu-toggle {
+    display: flex;
   }
   
   .skills, .services {
     grid-template-columns: 1fr;
+  }
+  
+  .hero {
+    min-height: calc(100vh - var(--header-height-mobile)); /* FIXED: Account for mobile header */
+    padding-top: var(--space-lg); /* Add some spacing on mobile */
   }
 }
 
@@ -597,6 +661,14 @@ footer {
   
   .btn {
     width: 100%;
+  }
+  
+  .hero, .about {
+    gap: var(--space-lg);
+  }
+  
+  .hero-image img, .about-image img {
+    max-width: 280px;
   }
 }
 
