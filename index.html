@@ -149,8 +149,8 @@
   <p>© 2026 Joseph Kamau Muthike. All rights reserved.</p>
 </footer>
 
-  <script>
-  // Mobile menu toggle
+    <script>
+  // Mobile menu toggle and scroll effects
   document.addEventListener('DOMContentLoaded', function() {
     // Create menu toggle button
     const nav = document.querySelector('nav.container');
@@ -159,23 +159,44 @@
     // Create mobile menu button
     const menuToggle = document.createElement('button');
     menuToggle.className = 'menu-toggle';
+    menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
     nav.appendChild(menuToggle);
     
     // Toggle mobile menu
     menuToggle.addEventListener('click', function() {
       navLinks.classList.toggle('active');
-      menuToggle.innerHTML = navLinks.classList.contains('active') 
+      const isExpanded = navLinks.classList.contains('active');
+      menuToggle.setAttribute('aria-expanded', isExpanded);
+      menuToggle.innerHTML = isExpanded 
         ? '<i class="fas fa-times"></i>' 
         : '<i class="fas fa-bars"></i>';
+      
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = isExpanded ? 'hidden' : '';
     });
     
     // Close mobile menu when clicking a link
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
         menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.style.overflow = ''; // Restore scrolling
       });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const isClickInsideNav = nav.contains(event.target);
+      const isMenuActive = navLinks.classList.contains('active');
+      
+      if (!isClickInsideNav && isMenuActive) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.style.overflow = '';
+      }
     });
     
     // Header scroll effect
@@ -188,18 +209,26 @@
       }
     });
     
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchor links with header offset
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
         
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
+          e.preventDefault();
+          
+          // Get current header height
+          const header = document.querySelector('header');
+          const headerHeight = header.offsetHeight;
+          
+          // Calculate target position
+          const targetPosition = targetElement.offsetTop - headerHeight - 10;
+          
+          // Smooth scroll to target
           window.scrollTo({
-            top: targetElement.offsetTop - 80,
+            top: targetPosition,
             behavior: 'smooth'
           });
         }
@@ -224,7 +253,25 @@
     document.querySelectorAll('.project, .services li, .contact li').forEach(el => {
       observer.observe(el);
     });
+    
+    // Adjust body padding on resize (for mobile/desktop switching)
+    function adjustBodyPadding() {
+      const header = document.querySelector('header');
+      const headerHeight = header.offsetHeight;
+      document.body.style.paddingTop = headerHeight + 'px';
+      
+      // Update CSS variable for current header height
+      document.documentElement.style.setProperty('--current-header-height', headerHeight + 'px');
+    }
+    
+    // Adjust on load and resize
+    window.addEventListener('load', adjustBodyPadding);
+    window.addEventListener('resize', adjustBodyPadding);
+    
+    // Initial adjustment
+    adjustBodyPadding();
   });
-            </script>
+                            </script>
+    
 </body>
 </html>
