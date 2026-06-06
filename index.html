@@ -1,277 +1,609 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joseph Kamau | Full-Stack Web Developer</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Joseph Kamau Muthike — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- SEO -->
-  <meta name="description" content="Joseph Kamau is a Full-Stack Web Developer specializing in PHP, JavaScript, and MySQL. Experienced in hospital systems, e-commerce, and business management platforms." />
-  <meta name="keywords" content="Full Stack Developer, PHP Developer, Web Developer, JavaScript, MySQL" />
+  :root {
+    --ink: #0e1117;
+    --accent: #1a5c3a;
+    --accent-light: #e8f4ed;
+    --rule: #2a7a52;
+    --muted: #5c6370;
+    --pale: #f5f7f5;
+    --white: #ffffff;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
 
-  <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; max-width: 100%; padding: 28mm 22mm; }
+    a { color: var(--accent) !important; }
+  }
 
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="style.css" />
+  body {
+    font-family: var(--sans);
+    background: #e8ede9;
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 40px auto;
+    background: var(--white);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  /* ─── HEADER ─────────────────────────────────── */
+  .header {
+    background: var(--accent);
+    color: white;
+    padding: 48px 52px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .header-inner { position: relative; z-index: 1; }
+
+  .name {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .title-tag {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 24px;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    font-size: 13px;
+    opacity: 0.92;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .contact-item a {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    transition: border-color .2s;
+  }
+  .contact-item a:hover { border-color: white; }
+  .ci-icon {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* ─── BODY LAYOUT ────────────────────────────── */
+  .body-wrap {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+  }
+
+  .main-col { padding: 44px 44px 44px 52px; }
+  .side-col {
+    background: var(--pale);
+    padding: 44px 32px 44px 28px;
+    border-left: 1px solid #e2e8e3;
+  }
+
+  /* ─── SECTION ────────────────────────────────── */
+  .section { margin-bottom: 36px; }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rule);
+    margin-bottom: 14px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid var(--accent-light);
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 36px; height: 2px;
+    background: var(--rule);
+  }
+
+  /* ─── SUMMARY ────────────────────────────────── */
+  .summary p {
+    font-size: 13.5px;
+    color: #2c3a30;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ─── EXPERIENCE ─────────────────────────────── */
+  .exp-item { margin-bottom: 24px; }
+  .exp-item:last-child { margin-bottom: 0; }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .exp-role {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .exp-date {
+    font-size: 11.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-top: 2px;
+    font-weight: 500;
+  }
+  .exp-org {
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+  .exp-bullets li {
+    font-size: 13px;
+    color: #3a4a3e;
+    line-height: 1.65;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--rule);
+    font-size: 10px;
+    top: 3px;
+  }
+
+  /* ─── PROJECTS ───────────────────────────────── */
+  .project-item { margin-bottom: 18px; }
+  .project-item:last-child { margin-bottom: 0; }
+  .project-name {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .project-desc {
+    font-size: 12.5px;
+    color: #4a5c50;
+    line-height: 1.6;
+  }
+
+  /* ─── SIDEBAR SECTIONS ───────────────────────── */
+  .side-section { margin-bottom: 28px; }
+  .side-section:last-child { margin-bottom: 0; }
+
+  .side-title {
+    font-family: var(--serif);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    color: var(--rule);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #d4e4d8;
+    position: relative;
+  }
+  .side-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 28px; height: 2px;
+    background: var(--rule);
+  }
+
+  /* Skills */
+  .skill-category { margin-bottom: 12px; }
+  .skill-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid #c2dcc8;
+  }
+
+  /* Education */
+  .edu-item { margin-bottom: 14px; }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-degree {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 2px;
+  }
+  .edu-school {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1px;
+  }
+  .edu-meta {
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+
+  /* Certs */
+  .cert-item {
+    font-size: 12.5px;
+    color: #3a4a3e;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 7px;
+    line-height: 1.45;
+  }
+  .cert-item::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--rule);
+    font-size: 11px;
+    top: 1px;
+  }
+
+  /* Languages */
+  .lang-list { display: flex; flex-direction: column; gap: 6px; }
+  .lang-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lang-name { font-size: 12.5px; font-weight: 500; }
+  .lang-level {
+    font-size: 11px;
+    background: var(--ink);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Interests */
+  .interest-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .interest-tag {
+    font-size: 11.5px;
+    color: var(--muted);
+    background: white;
+    border: 1px solid #d0dbd2;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* Referees */
+  .referee-item { margin-bottom: 12px; }
+  .referee-item:last-child { margin-bottom: 0; }
+  .referee-name {
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--ink);
+    margin-bottom: 1px;
+  }
+  .referee-role {
+    font-size: 11.5px;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .referee-contact {
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+</style>
 </head>
 <body>
+<div class="page">
 
-<header>
-  <nav class="container">
-    <div class="logo">JK</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-
-<!-- HERO -->
-<section id="hero" class="container hero">
-  <div class="hero-text">
-    <p class="intro">Hi, my name is</p>
-    <h1>Joseph Kamau</h1>
-    <h2>Full-Stack Web Developer | PHP • JavaScript • MySQL</h2>
-    <p>
-      I design and develop real-world web systems including hospital information systems,
-      e-commerce platforms, and business management applications. I focus on performance,
-      security, and usability to deliver reliable digital solutions.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn primary">View Projects</a>
-      <a href="doc.html" class="btn secondary">View Resume</a>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="name">Joseph Kamau Muthike</div>
+      <div class="title-tag">Information Science &amp; Technology Professional</div>
+      <div class="contact-row">
+        <div class="contact-item">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Kirinyaga, Kenya
+        </div>
+        <div class="contact-item">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12 19.79 19.79 0 0 1 1.21 3.41 2 2 0 0 1 3.18 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +254 711 391 662
+        </div>
+        <div class="contact-item">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:joemuthike02@gmail.com">joemuthike02@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <a href="http://github.com/josekamaa" target="_blank">github.com/josekamaa</a>
+        </div>
+        <div class="contact-item">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <a href="https://portfolio-tan-phi-53.vercel.app/" target="_blank">Portfolio</a>
+        </div>
+        <div class="contact-item">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href="https://www.linkedin.com/in/joseph-kamau-a901ba344" target="_blank">LinkedIn</a>
+        </div>
+      </div>
     </div>
+  </header>
+
+  <div class="body-wrap">
+    <!-- MAIN COLUMN -->
+    <main class="main-col">
+
+      <!-- SUMMARY -->
+      <section class="section summary">
+        <div class="section-title">Professional Summary</div>
+        <p>Results-driven Information Science graduate with strong expertise in software development, database management, and information systems. Proven ability to design, develop, and deploy scalable web-based information systems that improve operational efficiency and data accuracy. Passionate about leveraging technology to solve real-world business challenges.</p>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section">
+        <div class="section-title">Professional Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div class="exp-role">ICT Intern</div>
+            <div class="exp-date">May 2024 – Aug 2024</div>
+          </div>
+          <div class="exp-org">Kimbimbi Level 4 Hospital, Kirinyaga County</div>
+          <ul class="exp-bullets">
+            <li>Collected, entered, and managed patient data using KMIS and KHIS tools.</li>
+            <li>Analyzed hospital statistics and prepared periodic reports for management and health authorities.</li>
+            <li>Supported data quality assurance by cleaning and validating records.</li>
+            <li>Assisted in monitoring healthcare service delivery through statistical summaries and trend reports.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div class="exp-role">Operations Staff</div>
+            <div class="exp-date">Jun 2025 – Present</div>
+          </div>
+          <div class="exp-org">Gitwa Farm Milk Point</div>
+          <ul class="exp-bullets">
+            <li>Supporting daily farm operations and contributing to the development of the business's digital presence.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="section">
+        <div class="section-title">Key Projects</div>
+
+        <div class="project-item">
+          <div class="project-name">Kimbimbi Health Information Management System (KHIMS)</div>
+          <div class="project-desc">Full-stack hospital management system covering the complete patient lifecycle — registration → consultation → pharmacy → records. Delivered measurable improvements in workflow efficiency and data management.</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">Daylight Collections Retail Information Management System</div>
+          <div class="project-desc">Developed an inventory and sales management system that enhanced stock tracking and enabled real-time sales reporting.</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">Vet-Care Agrovet Information Management System</div>
+          <div class="project-desc">Designed a centralized inventory and reporting platform for agrovet operations, improving stock visibility and business decision-making.</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">TNT Agrovet Nanyuki Management System</div>
+          <div class="project-desc">Built inventory tracking and sales modules supporting the digital transformation of business operations.</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">Gitwa Farm Milk Point Website</div>
+          <div class="project-desc">Developed and deployed a responsive business website, boosting online presence and customer engagement.</div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="side-col">
+
+      <!-- SKILLS -->
+      <div class="side-section">
+        <div class="side-title">Technical Skills</div>
+
+        <div class="skill-category">
+          <div class="skill-label">Languages</div>
+          <div class="skill-tags">
+            <span class="tag">PHP</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Java</span>
+            <span class="tag">C</span>
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-label">Frameworks &amp; Tools</div>
+          <div class="skill-tags">
+            <span class="tag">REST APIs</span>
+            <span class="tag">MVC</span>
+            <span class="tag">Responsive Design</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-label">Databases</div>
+          <div class="skill-tags">
+            <span class="tag">MySQL</span>
+            <span class="tag">Relational DB Design</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-label">Domain Knowledge</div>
+          <div class="skill-tags">
+            <span class="tag">KHIS</span>
+            <span class="tag">NHIF Systems</span>
+            <span class="tag">System Analysis</span>
+            <span class="tag">Records Management</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-label">Other</div>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">Distributed Systems</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="side-section">
+        <div class="side-title">Education</div>
+
+        <div class="edu-item">
+          <div class="edu-degree">BSc. Information Science (IT Major)</div>
+          <div class="edu-school">Kisii University, Kenya</div>
+          <div class="edu-meta">2021 – 2025 &nbsp;·&nbsp; Second Class Honours</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Kenya Certificate of Secondary Education</div>
+          <div class="edu-school">Kiamutugu Boys High School</div>
+          <div class="edu-meta">2017 – 2020</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Kenya Certificate of Primary Education</div>
+          <div class="edu-school">Kamucege Primary School</div>
+          <div class="edu-meta">2009 – 2016</div>
+        </div>
+      </div>
+
+      <!-- CERTIFICATIONS -->
+      <div class="side-section">
+        <div class="side-title">Certifications</div>
+        <div class="cert-item">KUISSA Association Certificate — Kisii University</div>
+        <div class="cert-item">Computer Packages — Microsoft Office</div>
+      </div>
+
+      <!-- LANGUAGES -->
+      <div class="side-section">
+        <div class="side-title">Languages</div>
+        <div class="lang-list">
+          <div class="lang-item">
+            <span class="lang-name">English</span>
+            <span class="lang-level">Fluent</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Kiswahili</span>
+            <span class="lang-level">Fluent</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERESTS -->
+      <div class="side-section">
+        <div class="side-title">Interests</div>
+        <div class="interest-tags">
+          <span class="interest-tag">Software Development</span>
+          <span class="interest-tag">Web Technologies</span>
+          <span class="interest-tag">Tech Innovation</span>
+          <span class="interest-tag">Traveling</span>
+        </div>
+      </div>
+
+      <!-- REFEREES -->
+      <div class="side-section">
+        <div class="side-title">Referees</div>
+
+        <div class="referee-item">
+          <div class="referee-name">Dr. Namande</div>
+          <div class="referee-role">Head of Department, Library &amp; Information Science</div>
+          <div class="referee-contact">0723 848 930</div>
+        </div>
+
+        <div class="referee-item">
+          <div class="referee-name">Hellen Njeru</div>
+          <div class="referee-role">Manager, Gitwa Farm Milk Point</div>
+          <div class="referee-contact">0702 506 651</div>
+        </div>
+
+        <div class="referee-item">
+          <div class="referee-name">Edwin Kinyanjui</div>
+          <div class="referee-role">Referee</div>
+          <div class="referee-contact">0719 187 578</div>
+        </div>
+      </div>
+
+    </aside>
   </div>
-
-  <!-- HERO IMAGE (RESTORED) -->
-  <div class="hero-image">
-    <img src="grad.jpg" alt="Joseph Kamau - Full Stack Developer" onerror="this.style.display='none';" />
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="container about">
-  <div class="about-text">
-    <h2>About Me</h2>
-    <p>
-      I am a passionate Full-Stack Web Developer with a background in Information Science
-      and hands-on experience building complete systems from design to deployment.
-    </p>
-    <p>
-      I specialize in structured, data-driven applications such as hospital systems,
-      inventory platforms, dashboards, and APIs.
-    </p>
-    <p>
-      I am actively seeking job opportunities, internships, and freelance projects.
-    </p>
-
-    <ul class="skills">
-      <li>HTML5 & Semantic Markup</li>
-      <li>CSS3 & Responsive Design</li>
-      <li>JavaScript (ES6+)</li>
-      <li>PHP Backend Development</li>
-      <li>MySQL & Database Design</li>
-      <li>RESTful APIs</li>
-      <li>Git & Version Control</li>
-    </ul>
-  </div>
-
-  <!-- ABOUT IMAGE (RESTORED) -->
-  <div class="about-image">
-    <img src="grad.jpg" alt="Joseph Kamau" onerror="this.style.display='none';" />
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="container">
-  <h2>What I Can Build</h2>
-  <ul class="services">
-    <li>Custom Web Applications</li>
-    <li>Hospital & Health Information Systems</li>
-    <li>Business & Inventory Management Systems</li>
-    <li>E-commerce Platforms</li>
-    <li>Admin Dashboards & Reports</li>
-    <li>REST APIs & Backend Services</li>
-  </ul>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="container">
-  <h2>Projects</h2>
-
-  <article class="project">
-    <h3>KHIMS – Hospital Management System</h3>
-    <p>Centralized hospital system with role-based access, reporting, and digital records.</p>
-    <p><strong>Tech:</strong> HTML, CSS, JavaScript, PHP, MySQL</p>
-  </article>
-
-  <article class="project">
-    <h3>Daylight Collections – Stock & Sales System</h3>
-    <p>Inventory tracking and analytics dashboard for retail business.</p>
-    <p><strong>Tech:</strong> PHP, JavaScript, MySQL, Chart.js</p>
-  </article>
-
-  <article class="project">
-    <h3>Product Management Dashboard</h3>
-    <p>Full-stack dashboard with authentication, API integration, and order reports.</p>
-    <p><strong>Tech:</strong> JavaScript, PHP, REST APIs</p>
-  </article>
-
-  <article class="project">
-    <h3>Agrovet Management System</h3>
-    <p>Business management system supporting stock, sales, and remote access.</p>
-    <p><strong>Tech:</strong> PHP, MySQL, HTML, CSS, JavaScript</p>
-  </article>
-
-  <article class="project">
-    <h3>E-commerce Website with M-Pesa</h3>
-    <p>Online store with cart, authentication, and M-Pesa payment integration.</p>
-    <p><strong>Tech:</strong> PHP, JavaScript, Daraja API</p>
-  </article>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="container">
-  <h2>Contact</h2>
-  <p>I’m open to job opportunities and freelance work.</p>
-  <ul class="contact">
-    <li>Email: <a href="mailto:joemuthike02@gmail.com">joemuthike02@gmail.com</a></li>
-    <li>WhatsApp: <a href="https://wa.me/254720077219">+254 720 077 219</a></li>
-    <li>GitHub: <a href="https://github.com/josekamaa">github.com/josekamaa</a></li>
-    <li>LinkedIn: <a href="https://www.linkedin.com">Joseph Kamau</a></li>
-  </ul>
-</section>
-
-<footer class="container">
-  <p>© 2026 Joseph Kamau Muthike. All rights reserved.</p>
-</footer>
-
-    <script>
-  // Mobile menu toggle and scroll effects
-  document.addEventListener('DOMContentLoaded', function() {
-    // Create menu toggle button
-    const nav = document.querySelector('nav.container');
-    const navLinks = document.querySelector('.nav-links');
-    
-    // Create mobile menu button
-    const menuToggle = document.createElement('button');
-    menuToggle.className = 'menu-toggle';
-    menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
-    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    nav.appendChild(menuToggle);
-    
-    // Toggle mobile menu
-    menuToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('active');
-      const isExpanded = navLinks.classList.contains('active');
-      menuToggle.setAttribute('aria-expanded', isExpanded);
-      menuToggle.innerHTML = isExpanded 
-        ? '<i class="fas fa-times"></i>' 
-        : '<i class="fas fa-bars"></i>';
-      
-      // Prevent body scroll when menu is open
-      document.body.style.overflow = isExpanded ? 'hidden' : '';
-    });
-    
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        document.body.style.overflow = ''; // Restore scrolling
-      });
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const isClickInsideNav = nav.contains(event.target);
-      const isMenuActive = navLinks.classList.contains('active');
-      
-      if (!isClickInsideNav && isMenuActive) {
-        navLinks.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        document.body.style.overflow = '';
-      }
-    });
-    
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-      const header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-    
-    // Smooth scroll for anchor links with header offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          e.preventDefault();
-          
-          // Get current header height
-          const header = document.querySelector('header');
-          const headerHeight = header.offsetHeight;
-          
-          // Calculate target position
-          const targetPosition = targetElement.offsetTop - headerHeight - 10;
-          
-          // Smooth scroll to target
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-    
-    // Add animation to elements on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-        }
-      });
-    }, observerOptions);
-    
-    // Observe elements to animate
-    document.querySelectorAll('.project, .services li, .contact li').forEach(el => {
-      observer.observe(el);
-    });
-    
-    // Adjust body padding on resize (for mobile/desktop switching)
-    function adjustBodyPadding() {
-      const header = document.querySelector('header');
-      const headerHeight = header.offsetHeight;
-      document.body.style.paddingTop = headerHeight + 'px';
-      
-      // Update CSS variable for current header height
-      document.documentElement.style.setProperty('--current-header-height', headerHeight + 'px');
-    }
-    
-    // Adjust on load and resize
-    window.addEventListener('load', adjustBodyPadding);
-    window.addEventListener('resize', adjustBodyPadding);
-    
-    // Initial adjustment
-    adjustBodyPadding();
-  });
-                            </script>
-    
+</div>
 </body>
 </html>
